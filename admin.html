@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Gestion des Vélos</title>
+    <link rel="stylesheet" href="style/style.css">
+</head>
+<body>
+    <header>
+        <h1>Gestion des Vélos (Admin)</h1>
+    </header>
+
+    <div id="navbar"></div>
+
+    <section>
+        <h2>Ajouter un Vélo</h2>
+        <form id="add-bike-form" enctype="multipart/form-data">
+            <label for="name">Nom :</label>
+            <input type="text" id="name" name="name" required>
+        
+            <label for="description">Description :</label>
+            <textarea id="description" name="description" required></textarea>
+        
+            <label for="category">Catégorie :</label>
+            <select id="category" name="category" required>
+                <option value="1">VTT</option>
+                <option value="2">Vélo de Route</option>
+                <option value="3">Vélo Électrique</option>
+            </select>
+        
+            <label for="brand">Marque :</label>
+            <select id="brand" name="brand" required>
+                <option value="1">Giant</option>
+                <option value="2">Specialized</option>
+                <option value="3">Canyon</option>
+            </select>
+        
+            <label for="image">Image :</label>
+            <input type="file" id="image" name="image" accept="image/*" required>
+            <button type="submit">Ajouter</button>
+        </form>
+        
+    </section>
+
+    <section>
+        <h2>Liste des Vélos</h2>
+        <div id="bike-list">
+            <!-- Les vélos seront affichés ici -->
+        </div>
+    </section>
+
+    <script src="include.js"></script>
+    <script src="admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trek - Catalogue de Vélos</title>
+    <link rel="stylesheet" href="/style/style.css">
+</head>
+<body>
+    <header class="logo-container">
+        <img src="logovelo.png" alt="Logo du site" class="logo">
+        <h1> Bienvenue sur notre Catalogue</h1>
+        <p id="welcome-message"></p>
+
+        <script>
+            // Gestion du message de bienvenue
+            const welcomeMessage = document.getElementById('welcome-message');
+            const loginButton = document.getElementById('login-button');
+            const logoutButton = document.getElementById('logout-button');
+            const now = new Date();
+            const hour = now.getHours();
+
+            // Vérifie si un utilisateur est connecté
+            const loggedInUser = localStorage.getItem('loggedInUser');
+
+            if (loggedInUser) {
+                // Si un utilisateur est connecté
+                welcomeMessage.textContent = `Bienvenue, ${loggedInUser} ! Profitez de nos offres exclusives.`;
+                logoutButton.style.display = 'block'; // Affiche le bouton de déconnexion
+            } else {
+                // Si aucun utilisateur n'est connecté
+                if (hour < 12) {
+                    welcomeMessage.textContent = "Bonjour ! Découvrez nos vélos pour une aventure matinale.";
+                } else if (hour < 18) {
+                    welcomeMessage.textContent = "Bonne après-midi ! Parcourez nos vélos pour profiter de votre journée.";
+                } else {
+                    welcomeMessage.textContent = "Bonsoir ! Trouvez le vélo parfait pour vos prochaines sorties.";
+                }
+                loginButton.style.display = 'block'; // Affiche le bouton de connexion
+            }
+
+            // Fonction pour rediriger vers la page de connexion / inscription
+            function redirectToLogin() {
+                window.location.href = 'login.html';
+            }
+
+            // Fonction pour déconnecter l'utilisateur
+            function logout() {
+                localStorage.removeItem('loggedInUser');
+                alert("Vous êtes maintenant déconnecté !");
+                window.location.reload(); // Recharge la page
+            }
+        </script>
+    </header>
+
+    <div id="navbar"></div>
+
+    <section class="velo-card">
+        <h2>Types de vélos disponibles</h2>
+        <div>
+            <div>
+                <h3>VTT</h3>
+                <p>Explorez notre collection de VTT pour toutes les aventures hors route.</p>
+            </div>
+            <div>
+                <h3>Vélo de Route</h3>
+                <p>Découvrez nos vélos de route pour des performances exceptionnelles.</p>
+            </div>
+            <div>
+                <h3>Vélo Électrique</h3>
+                <p>Profitez de l'assistance électrique pour un trajet sans effort.</p>
+            </div>
+        </div>
+    </section>
+    <section class="velo-card">
+        <h2>Inscrivez-vous à notre newsletter</h2>
+        <form>
+            <div>
+                <label for="name">Nom :</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div>
+                <label for="email">Email :</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <button type="submit">S'inscrire</button>
+        </form>
+    </section>
+    <div data-include="footer.html"></div>
+
+
+    <script src="include.js"></script>
+</body>
+</html>

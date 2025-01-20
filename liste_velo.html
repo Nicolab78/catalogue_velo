@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liste des Vélos</title>
+    <link rel="stylesheet" href="style/style.css">
+</head>
+<body>
+    <header>
+        <h1>Liste des Vélos</h1>
+    </header>
+
+    <div id="navbar"></div>
+
+    <!-- Zone de filtrage -->
+    <section id="filter-section">
+        <label for="category-filter">Filtrer par catégorie :</label>
+        <select id="category-filter" onchange="filterBikes()">
+            <option value="">Toutes</option>
+            <option value="1">VTT</option>
+            <option value="2">Vélo de Route</option>
+            <option value="3">Vélo Électrique</option>
+        </select>
+
+        <label for="brand-filter">Filtrer par marque :</label>
+        <select id="brand-filter" onchange="filterBikes()">
+            <option value="">Toutes</option>
+            <option value="1">Giant</option>
+            <option value="2">Specialized</option>
+            <option value="3">Canyon</option>
+        </select>
+    </section>
+
+    <!-- Liste des vélos -->
+    <section id="bikes-list">
+        <!-- Les vélos seront injectés ici dynamiquement -->
+    </section>
+
+    <div data-include="footer.html"></div>
+
+
+    <script src="include.js"></script>
+    <script src="liste_velo.js"></script>
+</body>
+</html>

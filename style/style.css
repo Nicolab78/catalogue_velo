@@ -1,0 +1,178 @@
+/* Empêche le défilement horizontal */
+* {
+    box-sizing: border-box; /* Assure que padding et border sont inclus dans la largeur totale */
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    overflow-x: hidden; /* Empêche le défilement horizontal */
+}
+
+header {
+    background-color: #333;
+    color: white;
+    padding: 10px 0;
+    text-align: center;
+    width: 100%;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    flex-direction: column; /* Aligne les éléments verticalement */
+    text-align: center; /* Centre le contenu */
+    max-width: 100%; /* Empêche le débordement horizontal */
+}
+
+.logo {
+    width: 50px; /* Ajuste la taille du logo ici */
+    height: auto;
+    margin-right: 0; /* Supprime l'espace à droite */
+}
+
+header .logo-container h1, 
+header .logo-container #welcome-message {
+    margin: 0; /* Supprime les marges par défaut */
+    width: 100%; /* Prend toute la largeur pour chaque élément */
+}
+
+#welcome-message {
+    margin-top: 5px; /* Ajoute un espace au-dessus du message */
+    font-size: 1em; /* Taille de police pour le message de bienvenue */
+    color: #ccc; /* Couleur plus claire pour différencier du titre */
+}
+
+/* Navigation */
+.navbar {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #333; /* Couleur de fond */
+    padding: 10px; /* Espace intérieur */
+  }
+  .navbar a {
+    color: white; /* Couleur du texte */
+    text-decoration: none; /* Supprime le soulignement */
+    padding: 8px 16px; /* Ajoute de l’espace autour des liens */
+    border-radius: 5px; /* Coins arrondis */
+  }
+  .navbar a:hover {
+    background-color: #575757; /* Couleur au survol */
+  }
+
+/* Section générale */
+section {
+    padding: 20px;
+}
+
+/* Cartes de vélos */
+.velo-card {
+    border: 1px solid #ddd;
+    padding: 20px;
+    margin: 10px 10px; /* Uniforme sur les côtés */
+    background-color: white;
+}
+
+.velo-card img {
+    max-width: 100%;
+    height: auto;
+}
+
+.velo-card h3 {
+    color: #333;
+}
+
+section div img {
+    border: 2px black solid;
+}
+
+/* Liens de marque */
+.brand-link {
+    color: #007BFF; /* Couleur du lien */
+    text-decoration: underline; /* Souligne le lien */
+}
+
+.brand-link:hover {
+    color: #0056b3; /* Change la couleur au survol */
+}
+
+/* Footer */
+footer {
+    background-color: #333; /* Couleur de fond */
+    color: white; /* Couleur du texte */
+    text-align: center; /* Centre le texte */
+    padding: 20px; /* Espace autour du contenu */
+    position: relative; /* Pour un positionnement normal */
+    bottom: 0;
+    width: 100%; /* Prend toute la largeur */
+}
+
+.footer-links {
+    list-style-type: none; /* Supprime les puces */
+    padding: 0; /* Supprime le remplissage par défaut */
+}
+
+.footer-links li {
+    display: inline; /* Aligne les liens horizontalement */
+    margin: 0 10px; /* Espace entre les liens */
+}
+
+.footer-links a {
+    color: white; /* Couleur des liens */
+    text-decoration: none; /* Supprime le soulignement */
+}
+
+.footer-links a:hover {
+    text-decoration: underline; /* Souligne au survol */
+}
+
+.social-media {
+    margin-top: 10px; /* Espace au-dessus des liens sociaux */
+}
+
+.social-media a {
+    color: white; /* Couleur des liens sociaux */
+    margin: 0 5px; /* Espace entre les icônes sociales */
+}
+
+
+#bikes-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.bike-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 16px;
+    text-align: center;
+    background-color: #fff;
+}
+
+.bike-card img {
+    max-width: 100px;
+    height: auto;
+    margin-bottom: 10px;
+    border-radius: 8px;
+}
+
+.bike-card button {
+    margin-top: 10px;
+    padding: 8px 16px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.bike-card button:hover {
+    background-color: #0056b3;
+}

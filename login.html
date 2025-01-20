@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connexion</title>
+    <link rel="stylesheet" href="style/login.css"> <!-- Ajout du fichier CSS -->
+</head>
+<body>
+    <div class="container">
+        <form id="login-form" class="form">
+            <h1>Connexion</h1>
+            <div class="form-group">
+                <label for="username">Nom d'utilisateur :</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Mot de passe :</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <button type="submit">Se connecter</button>
+            <p>Pas encore de compte ? <a href="register.html">S'inscrire</a></p>
+        </form>
+    </div>
+
+    <script>
+        const form = document.getElementById('login-form');
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            try {
+                const response = await fetch('/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ username, password })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    alert(data.message);
+                    window.location.href = 'index.html'; // Redirige vers la page d'accueil
+                } else {
+                    alert(`Erreur : ${data.message}`);
+                }
+            } catch (error) {
+                console.error('Erreur réseau :', error);
+                alert('Erreur réseau. Veuillez réessayer.');
+            }
+        });
+    </script>
+</body>
+</html>
+
+
+

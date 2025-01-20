@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style/register.css">
+    <title>Inscription</title>
+</head>
+<body>
+    <div class="container">
+        <form id="register-form" class="form">
+            <h1>Inscription</h1>
+            <div class="form-group">
+                <label for="username">Nom d'utilisateur :</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Adresse e-mail :</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Mot de passe :</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <button type="submit">S'inscrire</button>
+            <p>Déjà inscrit ? <a href="login.html">Se connecter</a></p>
+        </form>
+    </div>
+
+    <script>
+        const form = document.getElementById('register-form');
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const username = document.getElementById('username').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            try {
+                const response = await fetch('/register', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ username, email, password }),
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    alert(data.message);
+
+                    // Stocker les informations de session (simulé avec localStorage si nécessaire)
+                    localStorage.setItem('loggedInUserId', data.userId);
+
+                    // Redirige vers la page d'accueil
+                    window.location.href = 'index.html';
+                } else {
+                    alert(`Erreur : ${data.message}`);
+                }
+            } catch (error) {
+                console.error('Erreur réseau :', error);
+                alert('Erreur réseau. Veuillez réessayer.');
+            }
+        });
+    </script>
+</body>
+</html>
+
+
+
+   
