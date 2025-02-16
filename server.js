@@ -341,21 +341,46 @@ app.post('/bikes/:id/favorite', (req, res) => {
   const userId = req.session.userId;
   const bikeId = req.params.id;
 
+  console.log("Tentative d'ajout aux favoris :");
+  console.log("Utilisateur ID :", userId);
+  console.log("Vélo ID :", bikeId);
+
   if (!userId) {
+      console.log("Erreur : utilisateur non connecté.");
       return res.status(401).json({ message: 'Non autorisé.' });
   }
 
-  db.query(
-      'INSERT INTO favorites (user_id, bike_id) VALUES (?, ?)',
-      [userId, bikeId],
-      (err) => {
-          if (err) {
-              console.error('Erreur SQL :', err);
-              return res.status(500).json({ message: 'Erreur serveur.' });
-          }
-          res.json({ message: 'Vélo ajouté aux favoris.' });
+  // Vérifie si le vélo est déjà en favori
+db.query(
+  'SELECT * FROM favorites WHERE user_id = ? AND bike_id = ?',
+  [userId, bikeId],
+  (err, results) => {
+      if (err) {
+          console.error('Erreur SQL (vérification) :', err);
+          return res.status(500).json({ message: 'Erreur serveur.' });
       }
-  );
+
+      if (results.length > 0) {
+          console.log("Ce vélo est déjà dans les favoris.");
+          return res.status(400).json({ message: 'Ce vélo est déjà dans les favoris.' });
+      }
+
+      // Ajout du favori
+      db.query(
+          'INSERT INTO favorites (user_id, bike_id) VALUES (?, ?)',
+          [userId, bikeId],
+          (err) => {
+              if (err) {
+                  console.error('Erreur SQL (ajout) :', err);
+                  return res.status(500).json({ message: 'Erreur serveur.' });
+              }
+              console.log("Ajout réussi !");
+              res.json({ message: 'Vélo ajouté aux favoris.' });
+          }
+      );
+  }
+);
+
 });
 
 app.delete('/bikes/:id/favorite', (req, res) => {

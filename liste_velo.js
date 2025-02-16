@@ -39,7 +39,7 @@ function displayBikes(bikes) {
             <p><strong>Description :</strong> ${bike.description}</p>
             <p><strong>Catégorie :</strong> ${bike.category}</p>
             <p><strong>Marque :</strong> ${bike.brand}</p>
-            <button onclick="addToFavorites(${bike.id})">Ajouter aux Favoris</button>
+            <button onclick="favoriteBike(${bike.id})">Ajouter aux Favoris</button>
         `;
         bikesList.appendChild(bikeCard);
     });
@@ -51,13 +51,17 @@ function displayBikes(bikes) {
 
 // Fonction pour ajouter un vélo en favoris
 async function favoriteBike(bikeId) {
+    console.log("Tentative d'ajout en favoris, ID du vélo :", bikeId);
+
     try {
         const response = await fetch(`/bikes/${bikeId}/favorite`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
+            credentials: 'include', // Assure que les cookies de session sont envoyés
         });
 
         const result = await response.json();
+        console.log("Réponse du serveur :", result);
 
         if (response.ok) {
             alert(result.message || "Ajouté aux favoris !");
@@ -77,6 +81,7 @@ async function favoriteBike(bikeId) {
         alert('Erreur réseau. Veuillez réessayer.');
     }
 }
+
 
 
 

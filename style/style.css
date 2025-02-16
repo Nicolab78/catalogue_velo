@@ -1,178 +1,133 @@
-/* Empêche le défilement horizontal */
+/* Reset et styles de base */
 * {
-    box-sizing: border-box; /* Assure que padding et border sont inclus dans la largeur totale */
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
 }
 
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
-    overflow-x: hidden; /* Empêche le défilement horizontal */
+    background-color: #f8f9fa;
+    color: #333;
+    line-height: 1.6;
 }
 
+/* Header */
 header {
-    background-color: #333;
+    background-color: #007bff;
     color: white;
-    padding: 10px 0;
     text-align: center;
-    width: 100%;
-}
-
-.logo-container {
-    display: flex;
-    align-items: center;
-    flex-direction: column; /* Aligne les éléments verticalement */
-    text-align: center; /* Centre le contenu */
-    max-width: 100%; /* Empêche le débordement horizontal */
-}
-
-.logo {
-    width: 50px; /* Ajuste la taille du logo ici */
-    height: auto;
-    margin-right: 0; /* Supprime l'espace à droite */
-}
-
-header .logo-container h1, 
-header .logo-container #welcome-message {
-    margin: 0; /* Supprime les marges par défaut */
-    width: 100%; /* Prend toute la largeur pour chaque élément */
-}
-
-#welcome-message {
-    margin-top: 5px; /* Ajoute un espace au-dessus du message */
-    font-size: 1em; /* Taille de police pour le message de bienvenue */
-    color: #ccc; /* Couleur plus claire pour différencier du titre */
+    padding: 15px;
+    font-size: 1.5em;
 }
 
 /* Navigation */
 .navbar {
     display: flex;
-    justify-content: space-around;
-    align-items: center;
-    background-color: #333; /* Couleur de fond */
-    padding: 10px; /* Espace intérieur */
-  }
-  .navbar a {
-    color: white; /* Couleur du texte */
-    text-decoration: none; /* Supprime le soulignement */
-    padding: 8px 16px; /* Ajoute de l’espace autour des liens */
-    border-radius: 5px; /* Coins arrondis */
-  }
-  .navbar a:hover {
-    background-color: #575757; /* Couleur au survol */
-  }
+    justify-content: center;
+    background: #0056b3;
+    padding: 10px;
+}
 
-/* Section générale */
-section {
+.navbar a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 15px;
+    margin: 0 10px;
+    border-radius: 5px;
+    transition: background 0.3s;
+}
+
+.navbar a:hover {
+    background: #003d82;
+}
+
+/* Section de filtrage */
+#filter-section {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin: 20px auto;
+    padding: 10px;
+    background: #e3e3e3;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 800px;
+}
+
+#filter-section select {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Liste des vélos */
+#bikes-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Centre les cartes */
+    gap: 20px; /* Espacement entre les cartes */
     padding: 20px;
 }
 
 /* Cartes de vélos */
-.velo-card {
-    border: 1px solid #ddd;
-    padding: 20px;
-    margin: 10px 10px; /* Uniforme sur les côtés */
-    background-color: white;
+.bike-card {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    text-align: center;
+    transition: transform 0.2s ease-in-out;
+    width: 280px; /* Taille fixe pour éviter les décalages */
+    min-height: 400px; /* Assure une hauteur uniforme */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Répartit le contenu */
 }
 
-.velo-card img {
-    max-width: 100%;
-    height: auto;
+/* Correction des images */
+.bike-card img {
+    width: 100%;
+    max-width: 220px; /* Réduction de la taille */
+    height: 160px; /* Fixer une hauteur pour uniformiser */
+    object-fit: contain; /* Empêche l'étirement des images */
+    margin-bottom: 10px;
 }
 
-.velo-card h3 {
-    color: #333;
+/* Texte et descriptions */
+.bike-card h2 {
+    font-size: 1.2em;
+    color: #007bff;
+    margin-bottom: 5px;
 }
 
-section div img {
-    border: 2px black solid;
+.bike-card p {
+    font-size: 0.9em;
+    color: #555;
+    margin-bottom: 10px;
 }
 
-/* Liens de marque */
-.brand-link {
-    color: #007BFF; /* Couleur du lien */
-    text-decoration: underline; /* Souligne le lien */
+/* Bouton */
+.bike-card button {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+    align-self: center;
 }
 
-.brand-link:hover {
-    color: #0056b3; /* Change la couleur au survol */
+.bike-card button:hover {
+    background: #0056b3;
 }
 
 /* Footer */
 footer {
-    background-color: #333; /* Couleur de fond */
-    color: white; /* Couleur du texte */
-    text-align: center; /* Centre le texte */
-    padding: 20px; /* Espace autour du contenu */
-    position: relative; /* Pour un positionnement normal */
-    bottom: 0;
-    width: 100%; /* Prend toute la largeur */
-}
-
-.footer-links {
-    list-style-type: none; /* Supprime les puces */
-    padding: 0; /* Supprime le remplissage par défaut */
-}
-
-.footer-links li {
-    display: inline; /* Aligne les liens horizontalement */
-    margin: 0 10px; /* Espace entre les liens */
-}
-
-.footer-links a {
-    color: white; /* Couleur des liens */
-    text-decoration: none; /* Supprime le soulignement */
-}
-
-.footer-links a:hover {
-    text-decoration: underline; /* Souligne au survol */
-}
-
-.social-media {
-    margin-top: 10px; /* Espace au-dessus des liens sociaux */
-}
-
-.social-media a {
-    color: white; /* Couleur des liens sociaux */
-    margin: 0 5px; /* Espace entre les icônes sociales */
-}
-
-
-#bikes-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 20px;
-    padding: 20px;
-}
-
-.bike-card {
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    padding: 16px;
+    background: #333;
+    color: white;
     text-align: center;
-    background-color: #fff;
-}
-
-.bike-card img {
-    max-width: 100px;
-    height: auto;
-    margin-bottom: 10px;
-    border-radius: 8px;
-}
-
-.bike-card button {
-    margin-top: 10px;
-    padding: 8px 16px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.bike-card button:hover {
-    background-color: #0056b3;
+    padding: 15px;
+    margin-top: 30px;
 }
